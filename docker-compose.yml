@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  php:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    tty: true
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - db-network
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    tty: true
+    volumes:
+      - "./scripts/start.sql:/docker-entrypoint-initdb.d/start.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: modelo1
+    networks:
+      - db-network
+networks:
+  db-network:
+    driver: bridge
