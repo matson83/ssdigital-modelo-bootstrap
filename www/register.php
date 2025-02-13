@@ -1,7 +1,7 @@
 <?php
 $nome = trim($_POST['nome']);
 $email = trim($_POST['email']);
-$senha = trim($_POST['senha']); // Removemos espaços em branco extras
+$senha = trim($_POST['senha']);
 $connect = mysqli_connect('db', 'root', 'password', 'modelo1');
 
 // Verifica se houve erro 
